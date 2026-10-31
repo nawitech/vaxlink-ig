@@ -1,7 +1,7 @@
 # Builds the IG with the HL7 IG Publisher and publishes output/ to GitHub Pages on every push to
-# main, so the canonical https://nawitech.github.io/vaxlink-ig resolves. The build runs inside the
-# bonfhir ig-toolbox image (Java, SUSHI, Jekyll and the publisher), the same one player-reference-ig
-# uses. The SUSHI-only workflow stays as the fast check on pull requests.
+# main, so the canonical https://nawitech.github.io/vaxlink-ig resolves. The publisher runs straight
+# on the runner (Java, Node for SUSHI, Ruby for Jekyll), the pattern the HL7 ci-build uses. The
+# SUSHI-only workflow stays as the fast check on pull requests.
 name: Publish IG
 
 on:
@@ -22,22 +22,39 @@ jobs:
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 45
-    container:
-      image: ghcr.io/bonfhir/ig-toolbox
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+      - name: Install SUSHI and Jekyll
+        run: |
+          npm install -g fsh-sushi@3.20.1
+          gem install jekyll --no-document
       - name: Cache the IG Publisher and FHIR packages
         uses: actions/cache@v4
         with:
           path: |
-            input-cache
+            input-cache/publisher.jar
             ~/.fhir/packages
           key: ig-publisher-${{ hashFiles('sushi-config.yaml') }}
           restore-keys: ig-publisher-
       - name: Fetch the IG Publisher
-        run: ./_updatePublisher.sh -y
+        run: |
+          mkdir -p input-cache
+          [ -f input-cache/publisher.jar ] || curl -sSL -o input-cache/publisher.jar \
+            https://github.com/HL7/fhir-ig-publisher/releases/latest/download/publisher.jar
       - name: Build the IG
-        run: ./_genonce.sh
+        run: java -Xmx4g -jar input-cache/publisher.jar -ig ig.ini
+      - name: Show the QA summary
+        run: grep -oE '[0-9]+ errors?, [0-9]+ warnings?[^<]*' output/qa.html | head -1 || true
       - uses: actions/upload-pages-artifact@v3
         with:
           path: output
