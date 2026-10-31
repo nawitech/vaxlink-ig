@@ -1,0 +1,27 @@
+# Compiles the FHIR Shorthand on every push and pull request, so a broken artifact never lands
+# unnoticed. The generated JSON is uploaded as a build artifact for the Player and Ontoserver loads.
+name: SUSHI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  sushi:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm install -g fsh-sushi@3.20.1
+      - run: sushi .
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fsh-generated
+          path: fsh-generated/resources

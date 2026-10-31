@@ -1,0 +1,32 @@
+id: nawitech.vaxlink
+canonical: https://nawitech.github.io/vaxlink-ig
+name: VaxLinkIG
+title: VaxLink Terminology and Schedule
+description: >-
+  Terminology and schedule content for the VaxLink vignette of the WHO Pre-GDHF workshop (Bangkok,
+  30 November to 1 December 2026). The Lao PDR schedule-dose code system, the partial map from WHO
+  PreQual vaccine types to Lao doses, and a local, provisional map from the two demo PreQual products
+  to their vaccine types. Authored by Nawi; intended to move to a WHO repository.
+status: draft
+version: 0.1.0
+fhirVersion: 4.0.1
+copyrightYear: 2026+
+releaseLabel: ci-build
+license: Apache-2.0
+publisher:
+  name: Nawitech Limited
+  url: https://nawi.ke
+jurisdiction: urn:iso:std:iso:3166#LA "Lao People's Democratic Republic"
+
+dependencies:
+  smart.who.int.pcmt-vaxprequal:
+    uri: http://smart.who.int/pcmt-vaxprequal/ImplementationGuide/smart.who.int.pcmt-vaxprequal
+    version: 0.2.0
+
+pages:
+  index.md:
+    title: Home
+
+menu:
+  Home: index.html
+  Artifacts: artifacts.html
