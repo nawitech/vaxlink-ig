@@ -1,0 +1,23 @@
+== Suppressed Messages ==
+
+# The WHO PreQual package on the FHIR registry (smart.who.int.pcmt-vaxprequal 0.2.0, built 16 September 2025)
+# carries an older code set than the live IG at worldhealthorganization.github.io/smart-pcmt-vaxprequal,
+# which is what the WHO worked-example certificates use (product a3K3X000006MiiXUAS, type HepB). The codes
+# below are valid on the live site. Raised with WHO (Ritika Rawlani) on 31 October 2026; remove these
+# suppressions when the registry package catches up.
+The source code 'HepB' is not valid in the code system http://smart.who.int/pcmt-vaxprequal/CodeSystem/PreQualVaccineType|0.2.0
+The source code 'BCG' is not valid in the code system http://smart.who.int/pcmt-vaxprequal/CodeSystem/PreQualVaccineType|0.2.0
+The source code 'DTwPHepBHib' is not valid in the code system http://smart.who.int/pcmt-vaxprequal/CodeSystem/PreQualVaccineType|0.2.0
+The source code 'bOPV' is not valid in the code system http://smart.who.int/pcmt-vaxprequal/CodeSystem/PreQualVaccineType|0.2.0
+The source code 'tOPV' is not valid in the code system http://smart.who.int/pcmt-vaxprequal/CodeSystem/PreQualVaccineType|0.2.0
+The source code 'nOPV2' is not valid in the code system http://smart.who.int/pcmt-vaxprequal/CodeSystem/PreQualVaccineType|0.2.0
+The source code 'IPV' is not valid in the code system http://smart.who.int/pcmt-vaxprequal/CodeSystem/PreQualVaccineType|0.2.0
+The source code 'sIPV' is not valid in the code system http://smart.who.int/pcmt-vaxprequal/CodeSystem/PreQualVaccineType|0.2.0
+The source code 'PCV' is not valid in the code system http://smart.who.int/pcmt-vaxprequal/CodeSystem/PreQualVaccineType|0.2.0
+The source code 'R' is not valid in the code system http://smart.who.int/pcmt-vaxprequal/CodeSystem/PreQualVaccineType|0.2.0
+The source code 'MR' is not valid in the code system http://smart.who.int/pcmt-vaxprequal/CodeSystem/PreQualVaccineType|0.2.0
+The source code 'JE' is not valid in the code system http://smart.who.int/pcmt-vaxprequal/CodeSystem/PreQualVaccineType|0.2.0
+The source code 'a3K3X000006MiiXUAS' is not valid in the code system http://smart.who.int/pcmt-vaxprequal/CodeSystem/PreQualProductIds|0.2.0
+The source code 'a3K3X000006MiiCUAS' is not valid in the code system http://smart.who.int/pcmt-vaxprequal/CodeSystem/PreQualProductIds|0.2.0
+The target code 'HepB' is not valid in the code system http://smart.who.int/pcmt-vaxprequal/CodeSystem/PreQualVaccineType|0.2.0
+The target code 'BCG' is not valid in the code system http://smart.who.int/pcmt-vaxprequal/CodeSystem/PreQualVaccineType|0.2.0
