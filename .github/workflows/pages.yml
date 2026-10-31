@@ -1,0 +1,53 @@
+# Builds the IG with the HL7 IG Publisher and publishes output/ to GitHub Pages on every push to
+# main, so the canonical https://nawitech.github.io/vaxlink-ig resolves. The build runs inside the
+# bonfhir ig-toolbox image (Java, SUSHI, Jekyll and the publisher), the same one player-reference-ig
+# uses. The SUSHI-only workflow stays as the fast check on pull requests.
+name: Publish IG
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    container:
+      image: ghcr.io/bonfhir/ig-toolbox
+    steps:
+      - uses: actions/checkout@v4
+      - name: Cache the IG Publisher and FHIR packages
+        uses: actions/cache@v4
+        with:
+          path: |
+            input-cache
+            ~/.fhir/packages
+          key: ig-publisher-${{ hashFiles('sushi-config.yaml') }}
+          restore-keys: ig-publisher-
+      - name: Fetch the IG Publisher
+        run: ./_updatePublisher.sh -y
+      - name: Build the IG
+        run: ./_genonce.sh
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: output
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

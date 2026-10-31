@@ -5,6 +5,7 @@ Terminology and schedule content for the VaxLink vignette of the WHO Pre-GDHF wo
 
 | | |
 |---|---|
+| Published | https://nawitech.github.io/vaxlink-ig (GitHub Pages, built on every push to main) |
 | Canonical | `https://nawitech.github.io/vaxlink-ig` |
 | FHIR version | 4.0.1 |
 | Status | draft, 0.1.0 |
