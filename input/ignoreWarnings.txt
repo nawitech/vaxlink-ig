@@ -3,8 +3,9 @@
 # The WHO PreQual package on the FHIR registry (smart.who.int.pcmt-vaxprequal 0.2.0, built 16 September 2025)
 # carries an older code set than the live IG at worldhealthorganization.github.io/smart-pcmt-vaxprequal,
 # which is what the WHO worked-example certificates use (product a3K3X000006MiiXUAS, type HepB). The codes
-# below are valid on the live site. Raised with WHO (Ritika Rawlani) on 31 October 2026; remove these
-# suppressions when the registry package catches up.
+# below are valid on the live site. Raised with WHO (Ritika Rawlani) on 31 October 2026. The publisher
+# never suppresses errors, so these still count in qa.html until WHO republishes the package; the
+# Editor's Comment on each one carries this note. Remove them when the registry package catches up.
 The source code 'HepB' is not valid in the code system http://smart.who.int/pcmt-vaxprequal/CodeSystem/PreQualVaccineType|0.2.0
 The source code 'BCG' is not valid in the code system http://smart.who.int/pcmt-vaxprequal/CodeSystem/PreQualVaccineType|0.2.0
 The source code 'DTwPHepBHib' is not valid in the code system http://smart.who.int/pcmt-vaxprequal/CodeSystem/PreQualVaccineType|0.2.0
