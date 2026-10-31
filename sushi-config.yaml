@@ -1,12 +1,13 @@
 id: nawitech.vaxlink
 canonical: https://nawitech.github.io/vaxlink-ig
 name: VaxLinkIG
-title: VaxLink Terminology and Schedule
+title: "VaxLink: cross-border reference immunization record portability IG"
 description: >-
-  Terminology and schedule content for the VaxLink vignette of the WHO Pre-GDHF workshop (Bangkok,
-  30 November to 1 December 2026). The Lao PDR schedule-dose code system, the partial map from WHO
-  PreQual vaccine types to Lao doses, and a local, provisional map from the two demo PreQual products
-  to their vaccine types. Authored by Nawi; intended to move to a WHO repository.
+  A reference IG for carrying routine immunization records across a border and verifying them on the
+  WHO GDHCN, with Thailand and Lao PDR as the worked pair: the WHO PreQual layers a certificate
+  carries, each receiving country's schedule-dose code system, and the deliberately partial map from
+  vaccine type to national dose. First built for the WHO Pre-GDHF workshop; authored by Nawi and
+  intended to move to a WHO repository.
 status: draft
 version: 0.1.0
 fhirVersion: 4.0.1
@@ -16,7 +17,9 @@ license: Apache-2.0
 publisher:
   name: Nawitech Limited
   url: https://nawi.ke
-jurisdiction: urn:iso:std:iso:3166#LA "Lao People's Democratic Republic"
+jurisdiction:
+  - urn:iso:std:iso:3166#LA "Lao People's Democratic Republic"
+  - urn:iso:std:iso:3166#TH "Thailand"
 
 dependencies:
   smart.who.int.pcmt-vaxprequal:
